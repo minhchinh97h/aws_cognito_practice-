@@ -14,9 +14,10 @@ const AWS = require('aws-sdk')
 
 AWS.config.region = 'us-east-2';
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-east-2:1f2424d8-e18a-4841-b038-23d22f863ab7',
-    RoleArn: 'arn:aws:iam::641642218101:user/admin'
+    IdentityPoolId: 'us-east-2:1f2424d8-e18a-4841-b038-23d22f863ab7'
 });
+AWS.config.update({accessKeyId: 'AKIAZKZG3IJ2TGS5N5UU', secretAccessKey: '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'})
+
 
 export default class Login extends React.Component{
 
@@ -80,13 +81,13 @@ export default class Login extends React.Component{
             TemporaryPassword: 'E1500932vamk@',
             UserAttributes: [
               {
-                Name: 'First Name', /* required */
-                Value: 'Chinh'
+                Name: 'email', /* required */
+                Value: 'minhchinhduong97@gmail.com'
               }
             ],
             ValidationData: [
               {
-                Name: 'Phone', /* required */
+                Name: 'phonenumber', /* required */
                 Value: '0469518856'
               }
             ]

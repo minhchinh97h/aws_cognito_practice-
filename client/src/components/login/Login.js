@@ -1,7 +1,8 @@
 import React from 'react'
-import {Fragment} from 'react'
-import {CognitoUserPool, 
-    CognitoUser, 
+import { Fragment } from 'react'
+import {
+    CognitoUserPool,
+    CognitoUser,
     AuthenticationDetails,
 } from 'amazon-cognito-identity-js'
 
@@ -16,10 +17,10 @@ AWS.config.region = 'us-east-2';
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'us-east-2:1f2424d8-e18a-4841-b038-23d22f863ab7'
 });
-AWS.config.update({accessKeyId: 'AKIAZKZG3IJ2TGS5N5UU', secretAccessKey: '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'})
+AWS.config.update({ accessKeyId: 'AKIAZKZG3IJ2TGS5N5UU', secretAccessKey: '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' })
 
 
-export default class Login extends React.Component{
+export default class Login extends React.Component {
 
     state = {
         username: '',
@@ -66,7 +67,7 @@ export default class Login extends React.Component{
 
         event.preventDefault()
     }
-    
+
     adminCreateUser = (e) => {
         e.preventDefault()
 
@@ -80,36 +81,33 @@ export default class Login extends React.Component{
             MessageAction: "SUPPRESS",
             TemporaryPassword: 'E1500932vamk@',
             UserAttributes: [
-              {
-                Name: 'email', /* required */
-                Value: 'minhchinhduong97@gmail.com'
-              }
+                {
+                    Name: 'email', /* required */
+                    Value: 'minhchinhduong97@gmail.com'
+                }
             ],
             ValidationData: [
-              {
-                Name: 'phonenumber', /* required */
-                Value: '0469518856'
-              }
+                {
+                    Name: 'phonenumber', /* required */
+                    Value: '0469518856'
+                }
             ]
-          };
+        };
 
         cognitoIdentityServiceProvider.adminCreateUser(params, (err, data) => {
-            if(err) console.log(err)
-            else{
+            if (err) console.log(err)
+            else {
                 console.log(data)
             }
         })
     }
 
-    componentDidMount(){
-
+    goToSignUpPage = () => {
+        this.props.history.push("sign-in")
     }
 
-    componentDidUpdate(prevProps, prevState){
-    }
-
-    render(){
-        return(
+    render() {
+        return (
             <Fragment>
                 <form onSubmit={this.submitForm}>
                     <label>
@@ -126,7 +124,11 @@ export default class Login extends React.Component{
                     </div>
 
                     <div>
-                        <button>Sign up</button>
+                        <button
+                            onClick={this.goToSignUpPage}
+                        >
+                            Sign up
+                        </button>
                     </div>
 
                     <div>
